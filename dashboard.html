@@ -304,12 +304,12 @@
             <form>
               <div class="max-w-xl">
                 <div class="flex space-x-1 items-center mb-2">
-                   <p class="text-white text-lg font-semibold">Please enter something</p>
+                   <p class="text-white text-lg font-semibold">Enter TokenID</p>
                 </div>
                 <div class="flex space-x-4">
-                  <div class="flex rounded-md overflow-hidden w-full outline outline-purple-500 outline-offset-2">
-                    <input type="text" class="w-full rounded-md rounded-r-none" placeholder="Search"/>
-                    <button class="bg-indigo-600 text-white px-6 text-lg font-semibold py-4 rounded-r-md">Go</button>
+                  <div class="flex rounded-md overflow-hidden w-full outline outline-purple-500 outline-offset-2" >
+                    <input type="text" class="w-full rounded-md rounded-r-none" id="token" placeholder="Search"/>
+                    <button class="bg-indigo-600 text-white px-6 text-lg font-semibold py-4 rounded-r-md" id="search">Go</button>
                   </div>
                   <button class="bg-white px-6 text-lg font-semibold py-4 rounded-md">Clear</button>
                 </div>
@@ -323,42 +323,38 @@
             <div class="flex flex-wrap -m-4">
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                 <a class="block relative h-48 rounded overflow-hidden">
-                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="./img/certi.jpg">
                 </a>
                 <div class="mt-4">
-                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <h2 class="text-white title-font text-lg font-medium">The Catalyzer</h2>
-                  <p class="text-gray-300 mt-1">$16.00</p>
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">Shalbany Manna</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Certificate 1</h2>
                 </div>
               </div>
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                 <a class="block relative h-48 rounded overflow-hidden">
-                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="./img/certi.jpg">
                 </a>
                 <div class="mt-4">
-                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <h2 class="text-white title-font text-lg font-medium">Shooting Stars</h2>
-                  <p class="text-gray-300 mt-1">$21.15</p>
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">Arishmit Ghosh</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Certificate 2</h2>
                 </div>
               </div>
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                 <a class="block relative h-48 rounded overflow-hidden">
-                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="./img/certi.jpg">
                 </a>
                 <div class="mt-4">
-                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <h2 class="text-white title-font text-lg font-medium">Neptune</h2>
-                  <p class="text-gray-300 mt-1">$12.00</p>
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">Parijat Rai</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Certificate 3</h2>
                 </div>
               </div>
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                 <a class="block relative h-48 rounded overflow-hidden">
-                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="./img/certi.jpg">
                 </a>
                 <div class="mt-4">
-                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <h2 class="text-white title-font text-lg font-medium">Neptune</h2>
-                  <p class="text-gray-300 mt-1">$12.00</p>
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">Abhinav Ghosh</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Certificate 4</h2>
                 </div>
               </div>
             </div>
@@ -516,8 +512,8 @@
 
         var tokenId, fundProj;
 
-        tokenId = document.getElementById('tokenId');
-        fundProj = document.getElementById('fundProj');
+        tokenId = document.getElementById('token');
+        fundProj = document.getElementById('search');
 
         balance = document.getElementById("balance");
         walletAddress = document.getElementById("walletAddress");
@@ -623,7 +619,7 @@
                 var tokenID = parseInt(receipt['logs'][0]['topics'][3], 16);
 
                 qr = new QRCode(qrcode_img);
-                qr.makeCode("http://10.12.7.210:5501/details.html?tokenId="+tokenID);
+                qr.makeCode("http://localhost:5501/details.html?tokenId="+tokenID);
 
                 minting = false;
                 upload = false;
