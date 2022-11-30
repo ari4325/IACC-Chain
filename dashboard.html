@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IACC-Chain</title>
+
+    <meta charset="utf-8" />
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Dark Mode JS -->
+    <script src="./js/darkMode.bundle.js"></script>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="img/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  </head>
+
+  <body
+    class="dark:bg-jacarta-900 font-body text-jacarta-500 overflow-x-hidden"
+    itemscope
+    itemtype="http://schema.org/WebPage"
+  >
+    <!-- Header -->
+    <header class="js-page-header fixed top-0 z-20 w-full backdrop-blur transition-colors">
+      <div class="flex items-center px-6 py-6 xl:px-24">
+        <!-- Logo -->
+        <div class="text-jacarta-300 font-display mb-5 text-center text-5xl dark:text-white md:text-left lg:text-2xl xl:text-3xl" style="margin: 1%;">IACC-Chain</div>
+
+
+        <!-- Menu / Actions -->
+        <div
+          class="js-mobile-menu dark:bg-jacarta-800 invisible fixed inset-0 z-10 ml-auto items-center bg-white opacity-0 lg:visible lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent"
+        >
+          <!-- Mobile Logo / Menu Close -->
+          <div
+            class="t-0 dark:bg-jacarta-800 fixed left-0 z-10 flex w-full items-center justify-between bg-white p-6 lg:hidden"
+          >
+            <!-- Mobile Logo -->
+            <a href="transactions.html" class="shrink-0">
+              <img src="img/logo.png" class="max-h-7 dark:hidden" />
+              <img src="img/logo_white.png" class="hidden max-h-7 dark:block" />
+            </a>
+
+            <!-- Mobile Menu Close -->
+            <button
+              class="js-mobile-close border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+              aria-label="close mobile menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Search -->
+          <form action="search" class="relative mt-24 mb-8 w-full lg:hidden">
+           
+          </form>
+
+          <!-- Primary Nav -->
+          <nav class="navbar w-full">
+            <ul class="flex flex-col lg:flex-row">
+
+              <li class="group">
+                <a
+                  href="explore.html"
+                  class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
+                  >Explore</a
+                >
+              </li>
+              <li class="group">
+                <a
+                  href="dashboard.html"
+                  class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
+                  >Dashboard</a
+                >
+              </li>
+            </ul>
+          </nav>
+
+
+          <!-- Mobile Connect Wallet / Socials -->
+          <div class="mt-10 w-full lg:hidden">
+            <a
+              href="#"
+              class="js-wallet bg-accent shadow-accent-volume hover:bg-accent-dark block w-full rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+              data-bs-toggle="modal"
+              data-bs-target="#walletModal"
+            >
+              Connect Wallet
+            </a>
+
+            <hr class="dark:bg-jacarta-600 bg-jacarta-100 my-5 h-px border-0" />
+
+           
+          </div>
+
+          <!-- Actions -->
+          <div class="ml-8 hidden lg:flex xl:ml-12">
+            <!-- Wallet -->
+            <a
+              href="#"
+              class="js-wallet border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+              data-bs-toggle="modal"
+              data-bs-target="#walletModal"
+              aria-label="wallet"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M22 6h-7a6 6 0 1 0 0 12h7v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2zm-7 2h8v8h-8a4 4 0 1 1 0-8zm0 3v2h3v-2h-3z"
+                />
+              </svg>
+            </a>
+
+
+            <!-- Dark Mode -->
+            <a
+              href="#"
+              class="border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent js-dark-mode-trigger ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 dark-mode-light h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 dark-mode-dark hidden h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Actions -->
+        <div class="ml-auto flex lg:hidden">
+          <!-- Profile -->
+          <a
+            href="edit-profile.html"
+            class="border-jacarta-100 hover:bg-accent focus:bg-accent group dark:hover:bg-accent ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            aria-label="profile"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M11 14.062V20h2v-5.938c3.946.492 7 3.858 7 7.938H4a8.001 8.001 0 0 1 7-7.938zM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6z"
+              />
+            </svg>
+          </a>
+
+          <!-- Dark Mode -->
+          <a
+            href="#"
+            class="js-dark-mode-trigger border-jacarta-100 hover:bg-accent dark:hover:bg-accent focus:bg-accent group ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 dark-mode-light h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:hidden"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M11.38 2.019a7.5 7.5 0 1 0 10.6 10.6C21.662 17.854 17.316 22 12.001 22 6.477 22 2 17.523 2 12c0-5.315 4.146-9.661 9.38-9.981z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 dark-mode-dark hidden h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:block dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path
+                d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z"
+              />
+            </svg>
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            class="js-mobile-toggle border-jacarta-100 hover:bg-accent dark:hover:bg-accent focus:bg-accent group ml-2 flex h-10 w-10 items-center justify-center rounded-full border bg-white transition-colors hover:border-transparent focus:border-transparent dark:border-transparent dark:bg-white/[.15]"
+            aria-label="open mobile menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              class="fill-jacarta-700 h-4 w-4 transition-colors group-hover:fill-white group-focus:fill-white dark:fill-white"
+            >
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M18 18v2H6v-2h12zm3-7v2H3v-2h18zm-3-7v2H6V4h12z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-[5.5rem] lg:pt-24">
+      
+      <!-- Profile -->
+      <section class="dark:bg-jacarta-800 bg-light-base relative pb-12 pt-28">
+        <!-- Avatar -->
+        
+
+        <div class="container" style="margin-top: -3%;">
+          <div class="text-center">
+            <h2 class="font-display text-jacarta-700 mb-2 text-4xl font-medium dark:text-white">DASHBOARD</h2>
+            <div class="mb-8">
+              <span class="text-jacarta-400 text-sm font-bold" id="walletAddress">wallet id goes here</span>
+            </div>
+
+            <div
+              class="dark:bg-jacarta-800 dark:border-jacarta-600 border-jacarta-100 mb-8 inline-flex flex-wrap items-center justify-center rounded-xl border bg-white"
+            >
+              
+              <a
+                href="#"
+                class="dark:border-jacarta-600 border-jacarta-100 w-1/2 border-r py-4 hover:shadow-md sm:w-32"
+              >
+                <div
+                  class="text-jacarta-700 mb-1 flex items-center justify-center text-base font-medium dark:text-white"
+                >
+                  
+                  <span class="font-bold" id="mintedNFT"></span>
+                </div>
+                <div class="text-2xs dark:text-jacarta-400 font-medium tracking-tight">Certificates minted</div>
+              </a>
+            </div>
+
+            <p class="dark:text-jacarta-300 mx-auto max-w-xl text-lg">
+              <a 
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#placeBidModal"
+                  class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                  >Mint Certificate</a
+                >
+            </p>
+
+            <input type="number" id="tokenId" placeholder="Enter tokenID to fund" style="margin-top: 1%;">
+
+            <p class="dark:text-jacarta-300 mx-auto max-w-xl text-lg">
+              <button 
+                  style = "margin: 1%;"
+                  id="fundProj"
+                  class="bg-accent shadow-accent-volume hover:bg-accent-dark inline-block rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+                  >Get Certificate</button
+                >
+            </p>
+
+           
+          </div>
+        </div>
+      </section>
+      <!-- end profile -->
+<!-- Place Bid Modal -->
+    <div class="modal fade" id="placeBidModal" tabindex="-1" aria-labelledby="placeBidLabel" aria-hidden="true">
+      <div class="modal-dialog max-w-2xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="placeBidLabel">Mint a Certificate</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-jacarta-700 h-6 w-6 dark:fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body p-6">
+
+            
+
+              
+
+              <div
+              class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border" 
+            >
+              <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
+                
+                <input
+                type="text"
+                class="focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
+                placeholder="Certificate Name"
+                value=""
+                id="projectName"
+                style="margin: 2%"
+              />
+              </div>
+
+              
+            </div>
+
+            <div
+            class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border" 
+          >
+            <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
+              
+              <input
+                type="text"
+                class="focus:ring-accent h-12 w-full flex-[3] border-0 focus:ring-inset"
+                placeholder="Certificate Description"
+                value=""
+                id="projectDescription"
+                style="margin: 2%"
+              />
+            </div>
+
+            
+        
+            
+          </div>
+
+          <div
+              class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border" 
+            >
+              <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
+                
+                <iframe id="preview" width="100%" height="400px"></iframe>
+              </div>
+
+              
+            </div>
+
+            <div
+              class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border" 
+            >
+              <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
+                
+                <div id="qrcode_img"></div>
+              </div>
+
+              
+            </div>
+
+            
+
+            <div
+              class="dark:border-jacarta-600 border-jacarta-100 relative mb-2 flex items-center overflow-hidden rounded-lg border" 
+            >
+              <div class="border-jacarta-100 bg-jacarta-50 flex flex-1 items-center self-stretch border-r px-2">
+                
+                <input type="file" accept="/*" style="margin: 2%" id="uploadInput" onchange="previewImage()" />
+              </div>
+
+              
+            </div>
+
+            <div class="text-right">
+              <span class="dark:text-jacarta-400 text-sm" id="balance"></span>
+            </div>
+ <!-- Terms -->
+            <div class="mt-4 flex items-center space-x-2">
+             
+            </div>
+          </div>
+          <!-- end body -->
+
+          <div class="modal-footer">
+            <div class="flex items-center justify-center space-x-4">
+              <button
+                type="button"
+                id="mintTokenBtn"
+                class="bg-accent shadow-accent-volume hover:bg-accent-dark rounded-full py-3 px-8 text-center font-semibold text-white transition-all"
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- JS Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="./js/app.bundle.js"></script>
+    <script src="./js/charts.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const earthNFTaddress = "0x71b53245a0178Ca7CDCF73Db12c26956AcfC9A8C";
+        const contract_address = '0xFbD35DEdAED26AdcA6b7928BBAae29a1c3643636';
+
+        var iacccore, iaccabi, iaccNFT, iaccNFTabi;
+        var accounts, web3, walletAddress, balance, availableBalance, mintedNFT, total_funding, preview, uploadInput, mintTokenBtn;
+
+        var projectName, projectDesc, funds, img, qrcode_img, qr;
+
+        var upload = false;
+        var minting = false;
+        var currentCID, currentTransactionHash;
+
+        var tokenId, fundProj;
+
+        tokenId = document.getElementById('tokenId');
+        fundProj = document.getElementById('fundProj');
+
+        balance = document.getElementById("balance");
+        walletAddress = document.getElementById("walletAddress");
+        
+        mintedNFT = document.getElementById('mintedNFT');
+        total_funding = document.getElementById('total_funding');
+        preview = document.getElementById('preview');
+
+        uploadInput = document.getElementById('uploadInput');
+
+        mintTokenBtn = document.getElementById('mintTokenBtn');
+
+        projectName = document.getElementById('projectName');
+        projectDesc = document.getElementById('projectDescription');
+        funds = document.getElementById('fundSeeked');
+
+        qrcode_img = document.getElementById('qrcode_img');
+
+        
+
+        async function load() {
+              web3 = new Web3(window.ethereum);
+              accounts = await web3.eth.getAccounts();
+              if(accounts[0] != undefined) {
+                 //0x0eE25Ea9CdAEAB823F12d3Ef18C097f413E369D7
+                 walletAddress.innerText = accounts[0];
+                 availableBalance = await web3.eth.getBalance(accounts[0]);
+                 balance.innerText = 'balance: ' + (availableBalance * Math.pow(10, -18)) + " MATIC";
+              }
+
+              await fetch('../build/contracts/IACCCore.json')
+               .then(response => response.json())
+               .then(data => {
+                  iaccabi = data.abi;
+                });
+
+              await fetch('../build/contracts/IACCNFT.json')
+                .then(response => response.json())
+                .then(data => {
+                  iaccNFTabi = data.abi;
+              });
+
+              iacccore = new web3.eth.Contract(iaccabi, contract_address);
+              iaccNFT = new web3.eth.Contract(iaccNFTabi, earthNFTaddress);
+              updateUI();
+        }
+
+        async function previewImage() {
+           img = uploadInput.files;
+           if(img.length > 0) {
+             var fileReader = new FileReader();
+
+             fileReader.onload = function (event) {
+               preview.setAttribute("src", event.target.result+"#toolbar=0");
+             }
+
+             fileReader.readAsDataURL(img[0]);
+           }
+        }
+
+        async function updateUI() {
+          var nfts, funding;
+            await iacccore.methods.getUserTokenCount().call({from: accounts[0]})
+            .then(function(result){
+                console.log(result);
+                nfts = result;
+            });
+            mintedNFT.innerText = nfts;
+        }
+
+        load();
+
+        mintTokenBtn.addEventListener("click", async () => {
+
+          console.log("btn clicked");
+
+          if(minting == true && upload == false){
+            window.open(
+            "https://mumbai.polygonscan.com/tx/"+currentTransactionHash, "_blank");
+          }
+          if(upload == true && minting == false) {
+            accounts = await web3.eth.getAccounts();
+            console.log(accounts[0]);
+            var functionData = await iacccore.methods.createProject(projectName.value, projectDesc.value, currentCID+".ipfs.nftstorage.link").encodeABI();
+            
+            web3.eth.sendTransaction({
+                from: accounts[0],
+                to: contract_address,
+                data: functionData
+            })
+            .on('transactionHash', function(hash){
+                console.log(hash);
+                currentTransactionHash = hash;
+                upload = false;
+                minting = true;
+                console.log("upload = " + upload, "minting = " + minting);
+                mintTokenBtn.innerText = "View your transaction";
+            })
+            .on('receipt', function(receipt){
+                console.log(receipt);
+                mintTokenBtn.innerText = "Upload"
+
+                var tokenID = parseInt(receipt['logs'][0]['topics'][3], 16);
+
+                qr = new QRCode(qrcode_img);
+                qr.makeCode("http://10.12.7.210:5501/details.html?tokenId="+tokenID);
+
+                minting = false;
+                upload = false;
+                console.log("upload = " + upload, "minting = " + minting);
+            })
+            .on('confirmation', function(confirmationNumber, receipt){ 
+
+            })
+            .on('error', console.error);
+          }
+          if(minting == false && upload == false){
+            console.log(img[0]);
+
+            mintTokenBtn.innerText = "Please wait...";
+
+            axios({
+              method: 'post',
+              url: 'https://api.nft.storage/upload',
+              data: img[0],
+              headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEQ4ZWY0RGY5ZDhFNjY1MWEwNTFBMzQxYjRGNDMzM0ZERWRmNjIyOTAiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1ODAzMDAxMjIyNSwibmFtZSI6IkVhcnRoUmFpc2VyIn0.go2tdDF2TJ4Se7qrD3vasa8mgjVRqlvIWRbUBEkvQS4' }
+              })
+              .then(async function (response) {
+                  //handle success
+                  currentCID = response.data.value.cid;
+                  console.log(currentCID);
+                  alert("Your token has been added to IPFS. CID: "+currentCID);
+
+                  upload = true;
+                  console.log("upload = " + upload, "minting = " + minting);
+
+                  mintTokenBtn.innerText = "Mint your Certificate";
+
+              })
+              .catch(function (response) {
+                  //handle error
+                  console.log(response);
+              });
+          }
+
+          
+        })
+
+        fundProj.addEventListener("click", () => {
+          window.open('/details.html?tokenId='+tokenId.value, "");
+        })
+
+         
+    </script>
+  </body>
+</html>
