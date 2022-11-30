@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="img/favicon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body
@@ -77,9 +78,9 @@
 
               <li class="group">
                 <a
-                  href="explore.html"
+                  href="index.html"
                   class="text-jacarta-700 font-display hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 text-base dark:text-white lg:px-5"
-                  >Explore</a
+                  >Home</a
                 >
               </li>
               <li class="group">
@@ -282,7 +283,7 @@
                 >
             </p>
 
-            <input type="number" id="tokenId" placeholder="Enter tokenID to fund" style="margin-top: 1%;">
+            <!-- <input type="number" id="tokenId" placeholder="Enter tokenID to fund" style="margin-top: 1%;">
 
             <p class="dark:text-jacarta-300 mx-auto max-w-xl text-lg">
               <button 
@@ -293,9 +294,77 @@
                 >
             </p>
 
-           
+            -->
           </div>
         </div>
+
+        <section>
+         <!-- component -->
+          <div class=" p-10 flex justify-center w-full">
+            <form>
+              <div class="max-w-xl">
+                <div class="flex space-x-1 items-center mb-2">
+                   <p class="text-white text-lg font-semibold">Please enter something</p>
+                </div>
+                <div class="flex space-x-4">
+                  <div class="flex rounded-md overflow-hidden w-full outline outline-purple-500 outline-offset-2">
+                    <input type="text" class="w-full rounded-md rounded-r-none" placeholder="Search"/>
+                    <button class="bg-indigo-600 text-white px-6 text-lg font-semibold py-4 rounded-r-md">Go</button>
+                  </div>
+                  <button class="bg-white px-6 text-lg font-semibold py-4 rounded-md">Clear</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-5 mx-auto">
+            <div class="flex flex-wrap -m-4">
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-white title-font text-lg font-medium">The Catalyzer</h2>
+                  <p class="text-gray-300 mt-1">$16.00</p>
+                </div>
+              </div>
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Shooting Stars</h2>
+                  <p class="text-gray-300 mt-1">$21.15</p>
+                </div>
+              </div>
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Neptune</h2>
+                  <p class="text-gray-300 mt-1">$12.00</p>
+                </div>
+              </div>
+              <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative h-48 rounded overflow-hidden">
+                  <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+                </a>
+                <div class="mt-4">
+                  <h3 class="text-gray-400 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  <h2 class="text-white title-font text-lg font-medium">Neptune</h2>
+                  <p class="text-gray-300 mt-1">$12.00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </section>
       <!-- end profile -->
 <!-- Place Bid Modal -->
